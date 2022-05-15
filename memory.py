@@ -1,32 +1,38 @@
-# LESH
 import random
+import os
 
-def mix(lev):
-    count = 1
-    num = random.randint(0, 9)
-    print(num)
-    num = int(num)
-    list = []
-    list.append(num)
-    print(list[0])
-    answer = input("숫자 입력 : ")
-    if int(answer) == list[0]:
-        print("정답입니다.")
-        while count <= lev:
-            num = random.randint(0, 9)
-            num = int(num)
-            print(num)
-            list.append(num)
-            dap = ''.join(map(str, list))
-            answer = input("숫자 입력 : ")
-            if answer != dap:
-                print(f"정답은 {dap} 입니다")
-                print(f"{count} 단계까지 성공했습니다.")
-                print("오답")
-                break
-            else:
-                None
+class memory:
+    def __init__(self, lev):
+        self.lev = lev
+        self.numList = []
+    
+    def getNum(self, min=0, max=10):
+        num = random.randint(min, max-1)
+        
+        self.numList.append(str(num))
+        return num
+
+    def answerCheck(self, count, answer):
+        if " ".join(self.numList[:count]) == answer:
+            return True
+        return False
+
+    def run(self):
+        count = 0
+        while True if count == 0 else self.answerCheck(count, answer):
+            os.system("clear")
+            if count > 0:
+                print("정답입니다!")
             count += 1
-    else:
-        print("오답입니다. 처음부터 다시 시작합니다.")
-mix(10)
+            num = self.getNum()
+            print(num)
+            answer = input()
+
+            
+            if count == self.lev:
+                print("전부 맞추셨습니다!")
+                break
+        print("답 : ", " ".join(self.numList))
+
+mm = memory(10)
+mm.run()
