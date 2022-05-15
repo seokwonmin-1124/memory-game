@@ -13,7 +13,7 @@ class memory:
         return num
 
     def answerCheck(self, count, answer):
-        if " ".join(self.numList[:count]) == answer:
+        if "".join(self.numList[:count]) == answer:
             return True
         return False
 
@@ -32,7 +32,7 @@ class memory:
             if count == self.lev:
                 print("전부 맞추셨습니다!")
                 break
-        print("답 : ", " ".join(self.numList))
+        print("답 : ", "".join(self.numList))
 
 mm = memory(10)
 mm.run()
